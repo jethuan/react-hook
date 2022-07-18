@@ -1,0 +1,16 @@
+.main-top {
+  top: 0;
+  left: 0;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  align-items: center;
+  background: #741188;
+  width: 100%;
+  padding: 0 2rem;
+  height: 5rem;
+}
+
+.main-top h1 {
+  color: white;
+}
