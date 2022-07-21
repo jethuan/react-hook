@@ -5,19 +5,13 @@ import Button from "../UI/Button/Button";
 import Card from "../UI/Card/Card";
 import classes from "./Home.module.css";
 
-const Home = () => {
-  const abc = useContext(AuthContent);
+const Home = (props) => {
+  const authCtx = useContext(AuthContent);
   return (
-    <AuthContent.Consumer>
-      {(abc) => {
-        return (
-          <Card className={classes.home}>
-            <h1>Welcome back!</h1>
-            <Button onClick={abc.onLogout}>Logout</Button>
-          </Card>
-        );
-      }}
-    </AuthContent.Consumer>
+    <Card className={classes.home}>
+      <h1>Welcome back!</h1>
+      <Button onClick={authCtx.onLogout}>Logout</Button>
+    </Card>
   );
 };
 

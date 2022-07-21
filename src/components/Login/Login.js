@@ -1,8 +1,10 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState, useReducer, useContext } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
 import Button from "../UI/Button/Button";
+import AuthContent from "../../store/auth-context";
+import Input from "../UI/Input/Input";
 
 let initial = {
   value: "",
@@ -38,6 +40,8 @@ const Login = (props) => {
 
   const [emailSate, dispatchEmail] = useReducer(emailReduce, initial);
   const [passwordSate, dispatchPassword] = useReducer(passwordReduce, initial);
+
+  const authCtx = useContext(AuthContent);
 
   useEffect(() => {
     console.log("EFFECT IS RUNNING");
@@ -86,26 +90,21 @@ const Login = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    props.onLogin(emailSate.value, passwordSate.value);
+    authCtx.onLogin(emailSate.value, passwordSate.value);
   };
 
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${
-            emailSate.isValid === false ? classes.invalid : ""
-          }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={emailSate.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
+        <Input
+          isValid={emailIsValid}
+          lable="E-mail"
+          id="email"
+          type="email"
+          value={emailSate.value}
+          onChange={emailChangeHandler}
+          onBlur={validateEmailHandler}
+        />
         <div
           className={`${classes.control} ${
             passwordSate === false ? classes.invalid : ""
