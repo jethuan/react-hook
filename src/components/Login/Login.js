@@ -116,7 +116,7 @@ const Login = (props) => {
         <Input
           ref={emailInputRef}
           isValid={emailIsValid}
-          lable="E-mail"
+          label="E-mail"
           id="email"
           type="email"
           value={emailSate.value}
